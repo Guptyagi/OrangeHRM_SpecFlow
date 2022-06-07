@@ -76,10 +76,19 @@ namespace OrangeHRMBDD.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add Emergency Contact")]
-        public virtual void AddEmergencyContact()
+        [NUnit.Framework.TestCaseAttribute("Admin", "admin123", "Pooja", "Sister", "909", "909", "909", null)]
+        [NUnit.Framework.TestCaseAttribute("Admin", "admin123", "Preety", "Sister", "890", "890", "890", null)]
+        public virtual void AddEmergencyContact(string username, string password, string contactname, string relationship, string homephone, string mobile, string workphone, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("username", username);
+            argumentsOfScenario.Add("password", password);
+            argumentsOfScenario.Add("contactname", contactname);
+            argumentsOfScenario.Add("relationship", relationship);
+            argumentsOfScenario.Add("homephone", homephone);
+            argumentsOfScenario.Add("mobile", mobile);
+            argumentsOfScenario.Add("workphone", workphone);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Emergency Contact", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -105,10 +114,10 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("I have browser with OrangeHRM Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
-testRunner.When("I enter username as \'Admin\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I enter username as \'{0}\'", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
-testRunner.And("I enter password as \'admin123\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I enter password as \'{0}\'", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
 testRunner.And("I click on login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -129,11 +138,11 @@ testRunner.And("I click add Emergency Contacts", ((string)(null)), ((TechTalk.Sp
                             "mobile",
                             "workphone"});
                 table1.AddRow(new string[] {
-                            "Sam",
-                            "Brother",
-                            "908",
-                            "989",
-                            "987"});
+                            string.Format("{0}", contactname),
+                            string.Format("{0}", relationship),
+                            string.Format("{0}", homephone),
+                            string.Format("{0}", mobile),
+                            string.Format("{0}", workphone)});
 #line 17
 testRunner.And("I fill the form", ((string)(null)), table1, "And ");
 #line hidden
